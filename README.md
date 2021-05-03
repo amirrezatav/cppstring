@@ -1,4 +1,4 @@
-# std-string-to-wstring-utf8-
+# CPP std string to wstring utf8 
 ## convert std string to std wstring (wide string)
   
         #include <codecvt>
