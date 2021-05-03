@@ -1,7 +1,12 @@
 #include <codecvt>
 #include <locale>
+#include<msclr/marshal_cppstd.h>
+using System::String;
+using std::string;
+using std::wstring;
 
-std::wstring convert(string input)
+
+std::wstring stringTowstring(string input)
 		{
 			try
 			{
@@ -19,4 +24,16 @@ std::wstring convert(string input)
 				}
 				return result;
 			}
+		}
+System::String wstringToString(wstring input)
+		{
+                         String ^ Text = gcnew String(input.c_str());
+                         return Text;
+		}
+System::String StringTowsstring(String input)
+		{
+
+			msclr::interop::marshal_context context;
+			std::string path = context.marshal_as<std::string>(input);
+			return path;
 		}
