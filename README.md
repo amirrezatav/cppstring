@@ -1,4 +1,14 @@
-# CPP std string to wstring (utf8)
+# Cpp string
+
+## convert System String  to std String 
+        #include<msclr/marshal_cppstd.h>
+
+        msclr::interop::marshal_context context;
+        std::string path = context.marshal_as<std::string>(MySystemString_Object);
+
+## convert std string to System String 
+        String ^ Text = gcnew String(Mystdstring_Object.c_str());
+
 ## convert std string to std wstring (wide string)
   
         #include <codecvt>
@@ -25,4 +35,4 @@
 		        }
 ## convert std wstring (wide string) to System String 
 
-        String ^ Text = gcnew String(convert(MyWideStringUTF8Object).c_str());
+        String ^ Text = gcnew String(convert(MyWideStringUTF8_Object).c_str());
