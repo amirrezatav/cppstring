@@ -10,7 +10,7 @@
        using namespace std;
        string str = "Hello World !";
 
-## std::string class in C++
+## System::String class in C++ (VC)
 The Windows Runtime and common language runtime represent strings as objects whose allocated memory is managed automatically. That is, you are not required to explicitly discard the memory for a string when the string variable goes out of scope or your application ends. To indicate that the lifetime of a string object is to be managed automatically, declare the string type with the handle-to-object (^) modifier.
 
     using namespace System;
