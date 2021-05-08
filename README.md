@@ -43,20 +43,20 @@ The Windows Runtime and common language runtime represent strings as objects who
 ## convert std string to std wstring (wide string)
 
  ```
-#include <string>
-#include <codecvt>
-#include <locale>
-std::string input_str = "this is a -string-, which is a sequence based on the -char- type.";
-std::wstring str_turned_to_wstr = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(input_str);
+    #include <string>
+    #include <codecvt>
+    #include <locale>
+    std::string input_str = "this is a -string-, which is a sequence based on the -char- type.";
+    std::wstring str_turned_to_wstr = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(input_str);
 ```
 
 ## convert std wstring  to std string 
 ```
-#include <string>
-#include <codecvt>
-#include <locale>
-std::wstring input_wstr = L"this is a -wide- string, which is based on the -wchar_t- type.";
-std::string wstr_turned_to_str = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(input_wstr);
+    #include <string>
+    #include <codecvt>
+    #include <locale>
+    std::wstring input_wstr = L"this is a -wide- string, which is based on the -wchar_t- type.";
+    std::string wstr_turned_to_str = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(input_wstr);
 ```
 
 ## convert System String  to std string 
