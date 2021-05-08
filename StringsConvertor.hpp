@@ -15,24 +15,9 @@ public:
 	/// </summary>
 	/// <param name="input">std string</param>
 	/// <returns>wstring</returns>
-	static std::wstring strTowstr(string input)
+	static std::wstring strTowstr(string input_str)
 	{
-		try
-		{
-			std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-			return converter.from_bytes(input);
-		}
-		catch (std::range_error& e)
-		{
-			size_t length = input.length();
-			std::wstring result;
-			result.reserve(length);
-			for (size_t i = 0; i < length; i++)
-			{
-				result.push_back(input[i] & 0xFF);
-			}
-			return result;
-		}
+		return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(input_str);
 	}
 	/// <summary>
 	/// convert std wstring to System String
@@ -61,9 +46,9 @@ public:
 	/// </summary>
 	/// <param name="input">wstring</param>
 	/// <returns>string</returns>
-	static std::string wstrTostr(wstring ws)
+	static std::string wstrTostr(wstring input_wstr )
 	{
-		return std::string(ws.begin(), ws.end());
+		return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(input_wstr );
 	}
 	/// <summary>
 	/// convert std System String to wstring 
@@ -76,7 +61,7 @@ public:
 		return context.marshal_as<std::wstring>(input);
 	}
 	/// <summary>
-	/// convert std System String to string 
+	/// convert System String to string 
 	/// </summary>
 	/// <param name="input">System ^</param>
 	/// <returns>string</returns>
