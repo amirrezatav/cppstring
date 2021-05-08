@@ -36,54 +36,28 @@ The Windows Runtime and common language runtime represent strings as objects who
 ## convert std wstring to System String 
         String ^ Text = gcnew String(MystdWidestring_Object.c_str());	
 		
+		
+		
+		
+		
 ## convert std string to std wstring (wide string)
-  
-        #include <codecvt>
-        #include <locale>
-        using std::string;
-        using std::wstring;
-        using std::wstring_convert;
-        using std::range_error;
 
-        wstring convert(string input)
-        {
-            try
-        	{
-        		wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-        		return converter.from_bytes(input);
-	        }
-	        catch (range_error& e)
-	        {
-		        size_t length = input.length();
-		        wstring result;
-		        result.reserve(length);
-                for (size_t i = 0; i < length; i++)
-	            {
-		            result.push_back(input[i] & 0xFF);
-		        }
-		        return result;
-	        }
-        }
-        int main()
-        {
-            wstring stdWidestr = convert("std string or UTF8 in std string");
-	    wcout << stdWidestr;
-        }
-			
+ ```
+#include <string>
+#include <codecvt>
+#include <locale>
+std::string input_str = "this is a -string-, which is a sequence based on the -char- type.";
+std::wstring str_turned_to_wstr = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(input_str);
+```
+
 ## convert std wstring  to std string 
-        #include <string>
-        #include <iostream>
-        #include <locale>
-        using  std::string;
-        using  std::wstring;
-        string wstrTostr(wstring ws)
-        {
-            return std::string(ws.begin(), ws.end());
-        }
-	int main()
-        {
-            string str = wstrTostr(L"سلام");
-        }
+```
+#include <string>
+#include <codecvt>
+#include <locale>
+std::wstring input_wstr = L"this is a -wide- string, which is based on the -wchar_t- type.";
+std::string wstr_turned_to_str = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(input_wstr);
+```
 
 ## convert System String  to std string 
         #include<msclr/marshal_cppstd.h>
